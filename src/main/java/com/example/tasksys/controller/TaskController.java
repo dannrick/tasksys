@@ -80,5 +80,11 @@ public class TaskController {
         return "redirect:/";
     }
     
+    @PostMapping("/excluir-tarefa")
+    public String excluirTarefa(@RequestParam Long id) {
+        tarefas.removeIf(tarefa -> tarefa.getId().equals(id));
+        return "redirect:/";
+    }
+
 
 }

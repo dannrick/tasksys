@@ -26,7 +26,13 @@
         </form>
         <!-- Botão para Editar a Tarefa -->
         <a th:href="@{/editar(id=${tarefa.id})}" class="btn btn-warning mt-3">Editar Tarefa</a>
-                 
+        <!-- Formulário para Excluir a Tarefa -->
+        <form action="/excluir-tarefa" method="post" class="mt-3">
+            <input type="hidden" name="id" th:value="${tarefa.id}"/>
+            <button type="submit" class="btn btn-danger">Excluir Tarefa</button>
+        </form>
+        
+        
         <a href="/" class="btn btn-secondary mt-3">Voltar</a>
     </div>
 </body>
