@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes da Tarefa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${tarefa.titulo}"></h1>
+        <p><strong>Tarefa:</strong> <span th:text="${tarefa.titulo}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${tarefa.descricao}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${tarefa.status}"></span></p>
+
+        <!-- Formulário para Alterar o Status -->
+        <form action="/atualizar-status" method="post" class="mt-4">
+            <input type="hidden" name="id" th:value="${tarefa.id}"/>
+            <div class="form-group">
+                <label for="status">Alterar Status:</label>
+                <select id="status" name="status" class="form-control" required>
+                    <option value="Sem status definido" th:selected="${tarefa.status == 'Sem status definido'}">Sem status definido</option>
+                    <option value="Em andamento" th:selected="${tarefa.status == 'Em andamento'}">Em andamento</option>
+                    <option value="Concluída" th:selected="${tarefa.status == 'Concluída'}">Concluída</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar Status</button>
+        </form>
+
+        <a href="/" class="btn btn-secondary mt-3">Voltar</a>
+    </div>
+</body>
+</html>
