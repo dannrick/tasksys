@@ -21,7 +21,21 @@
 <body>
     <div class="container">
         <h1>Tarefas</h1>
-        <a href="/cadastro" class="btn btn-primary">Cadastrar tarefa</a>
+        
+        <!-- Formulário de Filtro -->
+        <form action="/" method="get" class="form-inline mb-4">
+            <label for="statusFilter" class="mr-2">Filtrar por status:</label>
+            <select id="statusFilter" name="status" class="form-control mr-2">
+                <option value="" selected>Todas</option>
+                <option value="Sem status definido">Sem status definido</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluída">Concluída</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
+
+        <a href="/cadastro" class="btn btn-primary mb-3">Cadastrar tarefa</a>
+        
         <div class="mt-3">
             <div class="row">
                 <div class="col-12">
@@ -41,6 +55,3 @@
     </div>
 </body>
 </html>
-
-
-

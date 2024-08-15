@@ -9,16 +9,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TaskController {
     private List<Tarefa> tarefas = new ArrayList<>();
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("tarefas", tarefas);
+    public String index(@RequestParam(value = "status", required = false) String status, Model model) {
+        List<Tarefa> tarefasFiltradas = new ArrayList<>(tarefas);
+        
+        if (status != null && !status.isEmpty()) {
+            tarefasFiltradas = tarefas.stream()
+                .filter(tarefa -> tarefa.getStatus().equals(status))
+                .collect(Collectors.toList());
+        }
+
+        model.addAttribute("tarefas", tarefasFiltradas);
         return "index";
     }
+
 
     @GetMapping("/cadastro")
     public String cadastro() {
