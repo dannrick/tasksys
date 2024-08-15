@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Tarefa</h1>
+        <form action="/atualizar-tarefa" method="post" class="mt-4">
+            <input type="hidden" name="id" th:value="${tarefa.id}"/>
+            <div class="form-group">
+                <label for="titulo">Nome da tarefa:</label>
+                <input type="text" id="titulo" name="titulo" class="form-control" th:value="${tarefa.titulo}" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição da tarefa:</label>
+                <textarea id="descricao" name="descricao" class="form-control" required th:text="${tarefa.descricao}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            <a href="/" class="btn btn-secondary ml-2">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

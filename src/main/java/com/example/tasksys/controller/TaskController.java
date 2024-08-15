@@ -63,5 +63,22 @@ public class TaskController {
         return "redirect:/";
     }
 
+    @GetMapping("/editar")
+    public String editar(@RequestParam Long id, Model model) {
+        Tarefa tarefa = tarefas.stream().filter(f -> f.getId().equals(id)).findFirst().orElse(null);
+        model.addAttribute("tarefa", tarefa);
+        return "editar";
+    }
+
+    @PostMapping("/atualizar-tarefa")
+    public String atualizarTarefa(@RequestParam Long id, @RequestParam String titulo, @RequestParam String descricao) {
+        Tarefa tarefa = tarefas.stream().filter(f -> f.getId().equals(id)).findFirst().orElse(null);
+        if (tarefa != null) {
+            tarefa.setTitulo(titulo);
+            tarefa.setDescricao(descricao);
+        }
+        return "redirect:/";
+    }
+    
 
 }
