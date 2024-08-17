@@ -7,7 +7,8 @@
 <body>
     <div class="container">
         <h1>Editar Tarefa</h1>
-        <form action="/atualizar-tarefa" method="post" class="mt-4">
+        <form th:action="@{/atualizar-tarefa}" method="post">
+            <input type="hidden" name="_method" value="put" />
             <input type="hidden" name="id" th:value="${tarefa.id}"/>
             <div class="form-group">
                 <label for="titulo">Nome da tarefa:</label>

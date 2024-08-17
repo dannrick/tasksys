@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class TaskController {
@@ -70,7 +72,7 @@ public class TaskController {
         return "editar";
     }
 
-    @PostMapping("/atualizar-tarefa")
+    @PutMapping("/atualizar-tarefa")
     public String atualizarTarefa(@RequestParam Long id, @RequestParam String titulo, @RequestParam String descricao) {
         Tarefa tarefa = tarefaRepository.findById(id).orElse(null);
         if (tarefa != null) {
@@ -81,7 +83,7 @@ public class TaskController {
         return "redirect:/";
     }
 
-    @PostMapping("/excluir-tarefa")
+    @DeleteMapping("/excluir-tarefa")
     public String excluirTarefa(@RequestParam Long id) {
         tarefaRepository.deleteById(id);
         return "redirect:/";
