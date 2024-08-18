@@ -3,11 +3,29 @@
 <head>
     <title>Cadastro de Tarefa</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function validarFormulario() {
+            var titulo = document.getElementById("titulo").value.trim();
+            var descricao = document.getElementById("descricao").value.trim();
+
+            if (titulo === "" || descricao === "") {
+                alert("Por favor, preencha todos os campos.");
+                return false;
+            }
+
+            // Exibe a mensagem de sucesso como um alerta
+            alert("Os dados foram validados e a tarefa foi criada com sucesso!");
+            
+            document.querySelector("form").submit(); // Envia o formulário
+            
+            return false; // Impede a submissão do formulário até que o alerta seja exibido
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Cadastro de Tarefa</h1>
-        <form action="/cadastro" method="post" class="mt-4">
+        <form action="/cadastro" method="post" class="mt-4" onsubmit="return validarFormulario()">
             <div class="form-group">
                 <label for="titulo">Nome da tarefa:</label>
                 <input type="text" id="titulo" name="titulo" class="form-control" required>

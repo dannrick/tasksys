@@ -3,11 +3,29 @@
 <head>
     <title>Editar Tarefa</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function validarFormulario() {
+            var titulo = document.getElementById("titulo").value.trim();
+            var descricao = document.getElementById("descricao").value.trim();
+
+            if (titulo === "" || descricao === "") {
+                alert("Por favor, preencha todos os campos.");
+                return false;
+            }
+
+            // Exibe a mensagem de sucesso como um alerta e fecha automaticamente após 3 segundos
+            alert("Os dados foram validados e a tarefa foi editada com sucesso!");
+            
+            document.querySelector("form").submit(); // Envia o formulário
+            
+            return false; // Impede a submissão do formulário até que o alerta seja exibido
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Editar Tarefa</h1>
-        <form th:action="@{/atualizar-tarefa}" method="post">
+        <form th:action="@{/atualizar-tarefa}" method="post" onsubmit="return validarFormulario()">
             <input type="hidden" name="_method" value="put" />
             <input type="hidden" name="id" th:value="${tarefa.id}"/>
             <div class="form-group">
